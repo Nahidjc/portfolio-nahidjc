@@ -10,8 +10,35 @@ import Testimonials from '@/components/sections/Testimonials';
 import Contact from '@/components/sections/Contact';
 
 export default function HomePage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'MD. NAHID',
+    jobTitle: 'Software Engineer',
+    url: 'https://nahidjc.com',
+    image: 'https://avatars.githubusercontent.com/u/50502837?v=4',
+    sameAs: [
+      'https://github.com/nahidjc',
+      'https://www.linkedin.com/in/nahidjc',
+      'https://twitter.com/nahidjc',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Dhaka',
+      addressCountry: 'Bangladesh',
+    },
+    email: 'nahidjc.cse@gmail.com',
+    telephone: '+880 1910125428',
+    description:
+      'Software Engineer specializing in Node.js, React.js, React Native, MySQL, and AWS Lambda. 4+ years of experience building scalable, production-ready software.',
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Hero />
       <About />
       <Experience />

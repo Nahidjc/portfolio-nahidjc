@@ -151,7 +151,7 @@ export default function Footer() {
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
           <Typography variant="caption" color="text.secondary">
-            © {new Date().getFullYear()} MD.NAHID · Built with Next.js + MUI
+            © {new Date().getFullYear()} MD. NAHID. All rights reserved.
           </Typography>
           <IconButton
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

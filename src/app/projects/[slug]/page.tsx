@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Box from '@mui/material/Box';
@@ -37,6 +38,45 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+
+  if (!project) {
+    return {};
+  }
+
+  return {
+    title: project.title,
+    description: project.description,
+    alternates: {
+      canonical: `/projects/${slug}/`,
+    },
+    openGraph: {
+      title: `${project.title} | MD. NAHID`,
+      description: project.description,
+      url: `https://nahidjc.com/projects/${slug}/`,
+      type: 'website',
+      images: project.coverImage
+        ? [
+            {
+              url: project.coverImage,
+              width: 1200,
+              height: 630,
+              alt: project.title,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.title} | MD. NAHID`,
+      description: project.description,
+      images: project.coverImage ? [project.coverImage] : [],
+    },
+  };
+}
+
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
@@ -45,8 +85,27 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title,
+    description: project.description,
+    creator: {
+      '@type': 'Person',
+      name: 'MD. NAHID',
+    },
+    genre: project.category,
+    image: project.coverImage || undefined,
+    url: `https://nahidjc.com/projects/${project.slug}/`,
+    softwareRequirements: project.tech.join(', '),
+  };
+
   return (
     <Box sx={{ minHeight: '100vh', pt: { xs: 10, md: 12 }, pb: 8 }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       
       <Box sx={{ position: 'relative', bgcolor: 'action.hover', borderBottom: 1, borderColor: 'divider', py: { xs: 6, md: 8 }, overflow: 'hidden', mb: 6 }}>
         

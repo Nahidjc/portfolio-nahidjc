@@ -24,22 +24,68 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'MD. NAHID — Software Engineer',
+  metadataBase: new URL('https://nahid.ppimscaa.com'),
+  title: {
+    default: 'MD. NAHID | Software Engineer',
+    template: '%s | MD. NAHID',
+  },
   description:
-    'Software Engineer specializing in Node.js, React.js, AWS Lambda, and fintech systems. 4+ years experience building scalable, production-ready software.',
+    'Software Engineer specializing in Node.js, React.js, React Native, MySQL, and AWS Lambda. 4+ years of experience building scalable backend services and fintech systems.',
   keywords: [
+    'MD. NAHID',
+    'Nahidjc',
     'Software Engineer',
-    'Node.js',
-    'React.js',
-    'AWS Lambda',
     'Backend Developer',
-    'Bangladesh',
+    'Node.js Developer',
+    'React Developer',
+    'React Native',
+    'AWS Lambda',
+    'Serverless Engineer',
+    'Fintech Developer',
+    'Dhaka Bangladesh',
+    'Full Stack Engineer',
   ],
-  authors: [{ name: 'MD. NAHID' }],
+  authors: [{ name: 'MD. NAHID', url: 'https://github.com/nahidjc' }],
+  creator: 'MD. NAHID',
+  publisher: 'MD. NAHID',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'MD. NAHID — Software Engineer',
-    description: 'Software Engineer building scalable systems and reliable software.',
+    title: 'MD. NAHID | Software Engineer',
+    description:
+      'Software Engineer specializing in Node.js, React.js, React Native, MySQL, and AWS Lambda.',
+    url: 'https://nahidjc.com',
+    siteName: 'MD. NAHID Portfolio',
+    images: [
+      {
+        url: 'https://avatars.githubusercontent.com/u/50502837?v=4',
+        width: 1200,
+        height: 630,
+        alt: 'MD. NAHID — Software Engineer',
+      },
+    ],
+    locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MD. NAHID | Software Engineer',
+    description:
+      'Software Engineer specializing in Node.js, React.js, React Native, MySQL, and AWS Lambda.',
+    creator: '@nahidjc',
+    images: ['https://avatars.githubusercontent.com/u/50502837?v=4'],
   },
 };
 
