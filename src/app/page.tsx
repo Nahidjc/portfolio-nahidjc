@@ -8,6 +8,7 @@ import Certifications from '@/components/sections/Certifications';
 import Achievements from '@/components/sections/Achievements';
 import Testimonials from '@/components/sections/Testimonials';
 import Contact from '@/components/sections/Contact';
+import PageLoaderCloser from '@/components/ui/PageLoaderCloser';
 
 export default function HomePage() {
   const jsonLd = {
@@ -35,6 +36,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <PageLoaderCloser />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useColorMode } from '@/providers/MuiProvider';
 import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -38,6 +40,16 @@ const fadeUp = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transi
 export default function Projects() {
   const [search, setSearch] = useState('');
   const [tech, setTech] = useState('All');
+  const router = useRouter();
+  const { setLoading } = useColorMode();
+
+  const handleDetailsClick = (e: React.MouseEvent, slug: string) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      router.push(`/projects/${slug}/`);
+    }, 600);
+  };
 
   const filtered = projects.filter((p) => {
     const q = search.toLowerCase();
@@ -193,7 +205,15 @@ export default function Projects() {
                         <Button component="a" href={p.githubUrl} target="_blank" size="small" startIcon={<GitHubIcon sx={{ fontSize: '0.9rem' }} />} sx={{ fontSize: '0.75rem', p: 0.5 }}>Code</Button>
                       )}
                       <Box sx={{ flex: 1 }} />
-                      <Button component={Link} href={`/projects/${p.slug}/`} size="small" endIcon={<ArrowForwardRoundedIcon sx={{ fontSize: '0.9rem' }} />} color="primary" sx={{ fontSize: '0.75rem', fontWeight: 700, p: 0.5 }}>Details</Button>
+                      <Button
+                        onClick={(e) => handleDetailsClick(e, p.slug)}
+                        size="small"
+                        endIcon={<ArrowForwardRoundedIcon sx={{ fontSize: '0.9rem' }} />}
+                        color="primary"
+                        sx={{ fontSize: '0.75rem', fontWeight: 700, p: 0.5 }}
+                      >
+                        Details
+                      </Button>
                     </CardActions>
                   </Card>
                 </motion.div>

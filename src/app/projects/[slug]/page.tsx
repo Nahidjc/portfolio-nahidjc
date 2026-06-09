@@ -21,6 +21,7 @@ import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
 
 import { projects } from '@/data/projects';
+import PageLoaderCloser from '@/components/ui/PageLoaderCloser';
 
 const statusChip: Record<string, { bgcolor: string; color: string }> = {
   Live: { bgcolor: 'rgba(16,185,129,0.08)', color: '#10b981' },
@@ -102,6 +103,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   return (
     <Box sx={{ minHeight: '100vh', pt: { xs: 10, md: 12 }, pb: 8 }}>
+      <PageLoaderCloser />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

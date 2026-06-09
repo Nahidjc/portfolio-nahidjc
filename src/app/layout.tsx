@@ -87,11 +87,14 @@ export const metadata: Metadata = {
     creator: '@nahidjc',
     images: ['https://avatars.githubusercontent.com/u/50502837?v=4'],
   },
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body style={{ margin: 0 }} suppressHydrationWarning>
         <AppRouterCacheProvider>
           <MuiProvider>
