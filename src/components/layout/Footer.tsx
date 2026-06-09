@@ -150,7 +150,7 @@ export default function Footer() {
         <Divider sx={{ my: 4 }} />
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" color="text.secondary" suppressHydrationWarning>
             © {new Date().getFullYear()} MD. NAHID. All rights reserved.
           </Typography>
           <IconButton

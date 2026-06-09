@@ -92,7 +92,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body style={{ margin: 0 }}>
+      <body style={{ margin: 0 }} suppressHydrationWarning>
         <AppRouterCacheProvider>
           <MuiProvider>
             <Navbar />

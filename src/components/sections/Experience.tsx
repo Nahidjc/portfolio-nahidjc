@@ -86,7 +86,7 @@ export default function Experience() {
                           </Stack>
                           <Stack direction="row" alignItems="center" gap={0.5}>
                             <CalendarTodayRoundedIcon sx={{ fontSize: 12, color: 'text.secondary' }} />
-                            <Typography variant="caption" color="text.secondary" fontWeight={500}>
+                            <Typography variant="caption" color="text.secondary" fontWeight={500} suppressHydrationWarning>
                               {fmt(exp.startDate)} – {fmt(exp.endDate)} · {dur(exp.startDate, exp.endDate)}
                             </Typography>
                           </Stack>
