@@ -1,0 +1,30 @@
+{
+  "name": "@workspace/portfolio",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port ${PORT:-21113} --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --port ${PORT:-21113} --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "@mui/material": "^6.4.11",
+    "@mui/icons-material": "^6.4.11",
+    "@mui/material-nextjs": "^6.4.11",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@emotion/cache": "^11.14.0",
+    "framer-motion": "^12.18.0",
+    "react-icons": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.0"
+  }
+}
