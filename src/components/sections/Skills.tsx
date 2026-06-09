@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import LinearProgress from '@mui/material/LinearProgress';
 import * as Si from 'react-icons/si';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { skillGroups } from '@/data/skills';
@@ -100,10 +99,9 @@ export default function Skills() {
                       border: 1,
                       borderColor: 'divider',
                       borderRadius: 3,
-                      p: 2.5,
+                      p: 2,
                       display: 'flex',
-                      flexDirection: 'column',
-                      gap: 2,
+                      alignItems: 'center',
                       cursor: 'default',
                       transition: 'all 0.25s ease-in-out',
                       '&:hover': {
@@ -113,7 +111,7 @@ export default function Skills() {
                       },
                     }}
                   >
-                    <Stack direction="row" alignItems="center" gap={1.5}>
+                    <Stack direction="row" alignItems="center" gap={1.5} sx={{ width: '100%' }}>
                       <Box sx={{
                         width: 38, height: 38, borderRadius: 1.5,
                         bgcolor: 'action.hover', display: 'flex',
@@ -129,26 +127,6 @@ export default function Skills() {
                         {skill.name}
                       </Typography>
                     </Stack>
-
-                    <Box sx={{ width: '100%' }}>
-                      <Stack direction="row" justifyContent="space-between" sx={{ mb: 0.75 }}>
-                        <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.675rem', fontWeight: 600 }}>Proficiency</Typography>
-                        <Typography variant="caption" color="primary.main" sx={{ fontSize: '0.675rem', fontWeight: 800 }}>{skill.proficiency}%</Typography>
-                      </Stack>
-                      <LinearProgress
-                        variant="determinate"
-                        value={skill.proficiency}
-                        sx={{
-                          height: 4,
-                          borderRadius: 2,
-                          bgcolor: 'divider',
-                          '& .MuiLinearProgress-bar': {
-                            borderRadius: 2,
-                            bgcolor: 'primary.main',
-                          }
-                        }}
-                      />
-                    </Box>
                   </Box>
                 </motion.div>
               ))}

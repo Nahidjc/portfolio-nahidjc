@@ -70,7 +70,20 @@ function TestimonialCard({ testimonial: t }: { testimonial: typeof testimonials[
     <Card sx={{ height: '100%', p: 0.5, transition: 'all 0.3s ease-in-out', '&:hover': { borderColor: 'primary.main', transform: 'translateY(-3px)', boxShadow: (theme) => `0 12px 40px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.12)' : 'rgba(37,99,235,0.06)'}` } }}>
       <CardContent sx={{ p: 3 }}>
         <FormatQuoteRoundedIcon sx={{ fontSize: 40, color: 'primary.main', opacity: 0.3, mb: 1.5, mt: -0.5 }} />
-        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            lineHeight: 1.7,
+            mb: 3,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: 5,
+            WebkitBoxOrient: 'vertical',
+            minHeight: '8.5em',
+          }}
+        >
           "{t.content}"
         </Typography>
         <Stack direction="row" gap={2} alignItems="center">
