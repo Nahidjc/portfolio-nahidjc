@@ -47,17 +47,21 @@ export default function About() {
                   <Card
                     sx={{
                       height: '100%',
-                      transition: 'all 0.3s ease',
-                      '&:hover': { transform: 'translateY(-4px)', borderColor: 'primary.main', boxShadow: '0 12px 40px rgba(157,113,240,0.1)' },
+                      transition: 'all 0.3s ease-in-out',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        borderColor: 'primary.main',
+                        boxShadow: (theme) => `0 12px 40px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.12)' : 'rgba(37,99,235,0.06)'}`
+                      },
                     }}
                   >
                     <CardContent sx={{ p: 3 }}>
-                      <Box sx={{ width: 44, height: 44, borderRadius: 2.5, bgcolor: 'primary.main', opacity: 0.12, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2.5, position: 'relative' }}>
+                      <Box sx={{ width: 44, height: 44, borderRadius: 2, bgcolor: 'primary.main', opacity: 0.12, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2.5, position: 'relative' }}>
                         <Box sx={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <f.icon sx={{ color: 'primary.main', fontSize: 22 }} />
                         </Box>
                       </Box>
-                      <Typography variant="subtitle1" fontWeight={600} gutterBottom>{f.title}</Typography>
+                      <Typography variant="subtitle1" fontWeight={700} gutterBottom>{f.title}</Typography>
                       <Typography variant="body2" color="text.secondary">{f.description}</Typography>
                     </CardContent>
                   </Card>
@@ -71,16 +75,16 @@ export default function About() {
         <Grid container spacing={{ xs: 5, md: 8 }}>
           <Grid size={{ xs: 12, md: 6 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-              <Typography variant="h4" fontWeight={700} gutterBottom>Engineering Philosophy</Typography>
+              <Typography variant="h3" fontWeight={800} gutterBottom sx={{ fontSize: '1.75rem', mb: 2.5 }}>Engineering Philosophy</Typography>
               <Box sx={{ borderLeft: 3, borderColor: 'primary.main', pl: 3, mb: 3 }}>
-                <Typography variant="body1" color="text.secondary" sx={{ fontStyle: 'italic', lineHeight: 1.8 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ fontStyle: 'italic', lineHeight: 1.8, fontSize: '1.025rem' }}>
                   "Good software isn't just about making things work — it's about making them work reliably, securely, and in a way the next engineer can understand."
                 </Typography>
               </Box>
-              <Typography variant="body2" color="text.secondary" paragraph>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontSize: '0.925rem' }}>
                 My current focus is on fintech systems, serverless microservices, and real-time communication platforms. I care about clean API design and payment infrastructure users can trust.
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.925rem' }}>
                 When I'm not coding, I explore system design concepts and contribute to making that knowledge accessible to the Bangladeshi developer community.
               </Typography>
             </motion.div>
@@ -88,17 +92,17 @@ export default function About() {
 
           <Grid size={{ xs: 12, md: 6 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <Typography variant="h4" fontWeight={700} sx={{ mb: 3.5 }}>Career Journey</Typography>
+              <Typography variant="h3" fontWeight={800} sx={{ mb: 3.5, fontSize: '1.75rem' }}>Career Journey</Typography>
               <Box sx={{ pl: 2.5, borderLeft: 2, borderColor: 'divider' }}>
                 {timeline.map((t) => (
                   <Box key={t.year} sx={{ position: 'relative', mb: 3, '&:last-child': { mb: 0 } }}>
                     <Box sx={{
-                      position: 'absolute', left: -22, top: 4,
+                      position: 'absolute', left: -32, top: 4,
                       width: 12, height: 12, borderRadius: '50%',
                       bgcolor: 'primary.main', border: '2px solid', borderColor: 'background.default',
                     }} />
-                    <Typography variant="overline" color="primary" sx={{ display: 'block', mb: 0.25 }}>{t.year}</Typography>
-                    <Typography variant="body2" color="text.secondary">{t.event}</Typography>
+                    <Typography variant="overline" color="primary" sx={{ display: 'block', mb: 0.25, fontWeight: 700 }}>{t.year}</Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.9rem' }}>{t.event}</Typography>
                   </Box>
                 ))}
               </Box>

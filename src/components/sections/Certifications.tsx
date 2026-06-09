@@ -35,12 +35,12 @@ export default function Certifications() {
                   <Card
                     sx={{
                       height: '100%',
-                      transition: 'all 0.3s ease',
-                      '&:hover': { borderColor: 'primary.main', transform: 'translateY(-3px)', boxShadow: '0 12px 40px rgba(157,113,240,0.1)' },
+                      transition: 'all 0.3s ease-in-out',
+                      '&:hover': { borderColor: 'primary.main', transform: 'translateY(-3px)', boxShadow: (theme) => `0 12px 40px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.12)' : 'rgba(37,99,235,0.06)'}` },
                     }}
                   >
                     <CardContent sx={{ p: 3 }}>
-                      <Box sx={{ width: 44, height: 44, borderRadius: 2.5, bgcolor: 'rgba(157,113,240,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2.5 }}>
+                      <Box sx={{ width: 44, height: 44, borderRadius: 2.5, bgcolor: 'action.hover', border: '1px solid', borderColor: 'divider', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2.5 }}>
                         <WorkspacePremiumRoundedIcon sx={{ color: 'primary.main', fontSize: 24 }} />
                       </Box>
                       <Typography variant="subtitle1" fontWeight={700} gutterBottom>{cert.name}</Typography>

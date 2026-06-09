@@ -6,23 +6,25 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import LinearProgress from '@mui/material/LinearProgress';
 import * as Si from 'react-icons/si';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { skillGroups } from '@/data/skills';
 
 function getIcon(name: string) {
   const Icon = (Si as Record<string, React.ComponentType<{ size?: number }>>)[name];
-  return Icon ? <Icon size={22} /> : <Typography sx={{ fontSize: 12, fontWeight: 700 }}>{name.replace('Si', '').slice(0, 2)}</Typography>;
+  return Icon ? <Icon size={22} /> : <Typography sx={{ fontSize: 11, fontWeight: 700 }}>{name.replace('Si', '').slice(0, 2)}</Typography>;
 }
 
 const ALL = 'All';
 const categories = [ALL, ...skillGroups.map((g) => g.category)];
 
-const card = {
-  hidden: { opacity: 0, scale: 0.9, y: 10 },
+const card: any = {
+  hidden: { opacity: 0, scale: 0.95, y: 10 },
   show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3 } },
 };
-const grid = { hidden: {}, show: { transition: { staggerChildren: 0.035 } } };
+const grid = { hidden: {}, show: { transition: { staggerChildren: 0.03 } } };
 
 export default function Skills() {
   const [active, setActive] = useState(ALL);
@@ -42,7 +44,17 @@ export default function Skills() {
         />
 
         {/* Filter chips — horizontally scrollable on mobile */}
-        <Box sx={{ display: 'flex', gap: 1, mb: 5, overflowX: 'auto', pb: 0.5, mx: { xs: -2, sm: 0 }, px: { xs: 2, sm: 0 }, scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
+        <Box sx={{
+          display: 'flex',
+          gap: 1.25,
+          mb: 5,
+          overflowX: 'auto',
+          pb: 1,
+          mx: { xs: -2, sm: 0 },
+          px: { xs: 2, sm: 0 },
+          scrollbarWidth: 'none',
+          '&::-webkit-scrollbar': { display: 'none' }
+        }}>
           {categories.map((cat) => (
             <Chip
               key={cat}
@@ -51,13 +63,22 @@ export default function Skills() {
               variant={active === cat ? 'filled' : 'outlined'}
               sx={{
                 flexShrink: 0,
-                fontWeight: 600,
-                fontSize: '0.8rem',
-                borderRadius: 3,
+                fontWeight: 700,
+                fontSize: '0.75rem',
+                borderRadius: 2,
                 cursor: 'pointer',
+                transition: 'all 0.2s ease-in-out',
                 ...(active === cat
-                  ? { bgcolor: 'primary.main', color: 'white', boxShadow: '0 4px 16px rgba(157,113,240,0.3)' }
-                  : { borderColor: 'divider', color: 'text.secondary', '&:hover': { borderColor: 'primary.main', color: 'primary.main' } }),
+                  ? {
+                      bgcolor: 'primary.main',
+                      color: 'white',
+                      boxShadow: (theme) => `0 6px 20px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.3)' : 'rgba(37,99,235,0.2)'}`
+                    }
+                  : {
+                      borderColor: 'divider',
+                      color: 'text.secondary',
+                      '&:hover': { borderColor: 'primary.main', color: 'primary.main', bgcolor: 'action.hover' }
+                    }),
               }}
             />
           ))}
@@ -67,8 +88,8 @@ export default function Skills() {
         <motion.div key={active} variants={grid} initial="hidden" animate="show">
           <Box sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: 'repeat(3,1fr)', sm: 'repeat(4,1fr)', md: 'repeat(5,1fr)', lg: 'repeat(6,1fr)' },
-            gap: { xs: 1.5, sm: 2 },
+            gridTemplateColumns: { xs: 'repeat(2,1fr)', sm: 'repeat(3,1fr)', md: 'repeat(4,1fr)', lg: 'repeat(5,1fr)' },
+            gap: 2.5,
           }}>
             <AnimatePresence mode="popLayout">
               {visible.map((skill) => (
@@ -79,33 +100,55 @@ export default function Skills() {
                       border: 1,
                       borderColor: 'divider',
                       borderRadius: 3,
-                      p: { xs: 1.5, sm: 2 },
+                      p: 2.5,
                       display: 'flex',
                       flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: 1.25,
+                      gap: 2,
                       cursor: 'default',
-                      transition: 'all 0.2s ease',
+                      transition: 'all 0.25s ease-in-out',
                       '&:hover': {
                         borderColor: 'primary.main',
-                        boxShadow: '0 4px 20px rgba(157,113,240,0.12)',
-                        transform: 'translateY(-2px)',
+                        boxShadow: (theme) => `0 10px 30px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.1)' : 'rgba(37,99,235,0.04)'}`,
+                        transform: 'translateY(-3px)',
                       },
                     }}
                   >
-                    <Box sx={{
-                      width: 40, height: 40, borderRadius: 2,
-                      bgcolor: 'primary.main', display: 'flex',
-                      alignItems: 'center', justifyContent: 'center',
-                      color: 'white', opacity: 0.9,
-                      transition: 'opacity 0.2s',
-                      '&:hover': { opacity: 1 },
-                    }}>
-                      {getIcon(skill.icon)}
+                    <Stack direction="row" alignItems="center" gap={1.5}>
+                      <Box sx={{
+                        width: 38, height: 38, borderRadius: 1.5,
+                        bgcolor: 'action.hover', display: 'flex',
+                        alignItems: 'center', justifyContent: 'center',
+                        color: 'primary.main',
+                        border: 1,
+                        borderColor: 'divider',
+                        flexShrink: 0,
+                      }}>
+                        {getIcon(skill.icon)}
+                      </Box>
+                      <Typography variant="body2" fontWeight={800} sx={{ fontSize: '0.875rem', color: 'text.primary', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {skill.name}
+                      </Typography>
+                    </Stack>
+
+                    <Box sx={{ width: '100%' }}>
+                      <Stack direction="row" justifyContent="space-between" sx={{ mb: 0.75 }}>
+                        <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.675rem', fontWeight: 600 }}>Proficiency</Typography>
+                        <Typography variant="caption" color="primary.main" sx={{ fontSize: '0.675rem', fontWeight: 800 }}>{skill.proficiency}%</Typography>
+                      </Stack>
+                      <LinearProgress
+                        variant="determinate"
+                        value={skill.proficiency}
+                        sx={{
+                          height: 4,
+                          borderRadius: 2,
+                          bgcolor: 'divider',
+                          '& .MuiLinearProgress-bar': {
+                            borderRadius: 2,
+                            bgcolor: 'primary.main',
+                          }
+                        }}
+                      />
                     </Box>
-                    <Typography variant="caption" fontWeight={500} textAlign="center" sx={{ lineHeight: 1.3 }}>
-                      {skill.name}
-                    </Typography>
                   </Box>
                 </motion.div>
               ))}
@@ -121,9 +164,17 @@ export default function Skills() {
                 key={g.category}
                 onClick={() => setActive(g.category)}
                 size="small"
-                sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' }, fontSize: '0.75rem', gap: 0.75 }}
+                sx={{
+                  color: 'text.secondary',
+                  '&:hover': { color: 'primary.main' },
+                  fontSize: '0.725rem',
+                  fontWeight: 700,
+                  gap: 0.75,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
+                }}
               >
-                <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: 'primary.main', opacity: 0.6 }} />
+                <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: 'primary.main', opacity: 0.6 }} />
                 {g.category} ({g.skills.length})
               </Button>
             ))}

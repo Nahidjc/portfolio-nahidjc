@@ -7,7 +7,6 @@ import Projects from '@/components/sections/Projects';
 import Certifications from '@/components/sections/Certifications';
 import Achievements from '@/components/sections/Achievements';
 import Testimonials from '@/components/sections/Testimonials';
-import OpenSource from '@/components/sections/OpenSource';
 import Contact from '@/components/sections/Contact';
 
 export default function HomePage() {
@@ -22,7 +21,6 @@ export default function HomePage() {
       <Certifications />
       <Achievements />
       <Testimonials />
-      <OpenSource />
       <Contact />
     </main>
   );

@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -26,9 +27,9 @@ import { projects } from '@/data/projects';
 const allTech = ['All', ...Array.from(new Set(projects.flatMap((p) => p.tech))).slice(0, 9)];
 
 const statusChip: Record<string, { bgcolor: string; color: string }> = {
-  Live: { bgcolor: 'rgba(16,185,129,0.12)', color: '#10b981' },
-  'In Progress': { bgcolor: 'rgba(245,158,11,0.12)', color: '#f59e0b' },
-  Archived: { bgcolor: 'rgba(100,100,120,0.12)', color: '#8888aa' },
+  Live: { bgcolor: 'rgba(16,185,129,0.08)', color: '#10b981' },
+  'In Progress': { bgcolor: 'rgba(245,158,11,0.08)', color: '#f59e0b' },
+  Archived: { bgcolor: 'rgba(100,100,120,0.08)', color: '#8888aa' },
 };
 
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } };
@@ -82,15 +83,20 @@ export default function Projects() {
                   sx={{
                     border: '1px solid',
                     borderColor: 'divider',
-                    borderRadius: '99px !important',
+                    borderRadius: '8px !important',
                     px: 1.75,
                     py: 0.5,
                     fontSize: '0.75rem',
-                    fontWeight: 500,
+                    fontWeight: 700,
                     textTransform: 'none',
                     whiteSpace: 'nowrap',
                     color: 'text.secondary',
-                    '&.Mui-selected': { bgcolor: 'primary.main', color: 'white', borderColor: 'primary.main', '&:hover': { bgcolor: 'primary.dark' } },
+                    '&.Mui-selected': {
+                      bgcolor: 'primary.main',
+                      color: 'white',
+                      borderColor: 'primary.main',
+                      '&:hover': { bgcolor: 'primary.dark' }
+                    },
                   }}
                 >
                   {t}
@@ -108,7 +114,7 @@ export default function Projects() {
           whileInView="show"
           viewport={{ once: true, margin: '-60px' }}
         >
-          <Grid container spacing={2.5}>
+          <Grid container spacing={3.5}>
             {filtered.map((p) => (
               <Grid key={p.id} size={{ xs: 12, sm: 6, lg: 4 }}>
                 <motion.div variants={fadeUp} style={{ height: '100%' }}>
@@ -117,68 +123,79 @@ export default function Projects() {
                       height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
-                      transition: 'all 0.3s ease',
+                      transition: 'all 0.3s ease-in-out',
                       borderColor: p.featured ? 'primary.main' : 'divider',
-                      boxShadow: p.featured ? '0 0 0 1px rgba(157,113,240,0.2)' : 'none',
+                      boxShadow: p.featured
+                        ? (theme) => `0 0 0 1px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.2)' : 'rgba(37,99,235,0.15)'}`
+                        : 'none',
                       '&:hover': {
                         transform: 'translateY(-4px)',
-                        boxShadow: '0 16px 48px rgba(0,0,0,0.15)',
-                        '& .project-img': { transform: 'scale(1.05)' },
+                        borderColor: 'primary.main',
+                        boxShadow: (theme) => `0 16px 48px ${theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.06)'}`,
+                        '& .project-img': { transform: 'scale(1.04)' },
                       },
                       overflow: 'hidden',
                     }}
                   >
-                    <Box sx={{ position: 'relative', overflow: 'hidden', height: 180 }}>
+                    <Box sx={{ position: 'relative', overflow: 'hidden', height: 190 }}>
                       <CardMedia
                         component="img"
                         image={p.coverImage}
                         alt={p.title}
                         className="project-img"
-                        sx={{ height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                        sx={{ height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease-in-out' }}
                       />
-                      <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
-                      <Stack direction="row" gap={0.75} sx={{ position: 'absolute', top: 10, left: 10, right: 10, justifyContent: 'space-between' }}>
+                      <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(11,17,32,0.6), transparent)' }} />
+                      <Stack direction="row" gap={0.75} sx={{ position: 'absolute', top: 12, left: 12, right: 12, justifyContent: 'space-between' }}>
                         {p.featured && (
-                          <Chip label="Featured" size="small" sx={{ bgcolor: 'primary.main', color: 'white', fontWeight: 700, height: 20, fontSize: '0.65rem' }} />
+                          <Chip label="Featured" size="small" sx={{ bgcolor: 'primary.main', color: 'white', fontWeight: 800, height: 20, fontSize: '0.65rem', borderRadius: 1.5 }} />
                         )}
                         <Box sx={{ ml: 'auto' }}>
                           <Chip
                             label={p.status}
                             size="small"
-                            sx={{ ...statusChip[p.status], border: '1px solid', borderColor: 'inherit', height: 20, fontSize: '0.65rem', fontWeight: 600 }}
+                            sx={{ ...statusChip[p.status], border: '1px solid', borderColor: 'inherit', height: 20, fontSize: '0.65rem', fontWeight: 700, borderRadius: 1.5 }}
                           />
                         </Box>
                       </Stack>
                     </Box>
 
-                    <CardContent sx={{ flex: 1, p: 2.5, pb: 1.5 }}>
-                      <Stack direction="row" justifyContent="space-between" alignItems="flex-start" gap={1} sx={{ mb: 1 }}>
-                        <Typography variant="subtitle1" fontWeight={700} sx={{ lineHeight: 1.3 }}>{p.title}</Typography>
-                        <Chip label={p.category} size="small" sx={{ bgcolor: 'action.hover', fontSize: '0.65rem', height: 18, flexShrink: 0 }} />
+                    <CardContent sx={{ flex: 1, p: 3, pb: 2 }}>
+                      <Stack direction="row" justifyContent="space-between" alignItems="flex-start" gap={1.5} sx={{ mb: 1.5 }}>
+                        <Typography variant="h6" fontWeight={800} sx={{ lineHeight: 1.3, fontSize: '1rem' }}>{p.title}</Typography>
+                        <Chip label={p.category} size="small" sx={{ bgcolor: 'action.hover', fontSize: '0.65rem', height: 18, flexShrink: 0, fontWeight: 600, borderRadius: 1.5 }} />
                       </Stack>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.65 }}>{p.description}</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5, lineHeight: 1.65, fontSize: '0.85rem' }}>{p.description}</Typography>
                       <Stack direction="row" flexWrap="wrap" gap={0.75}>
                         {p.tech.slice(0, 4).map((t) => (
                           <Chip
                             key={t}
                             label={t}
                             size="small"
-                            sx={{ bgcolor: 'rgba(157,113,240,0.08)', color: 'primary.main', border: '1px solid rgba(157,113,240,0.2)', fontSize: '0.65rem', height: 20 }}
+                            sx={{
+                              bgcolor: 'rgba(59,130,246,0.06)',
+                              color: 'primary.main',
+                              border: '1px solid rgba(59,130,246,0.12)',
+                              fontSize: '0.65rem',
+                              height: 20,
+                              borderRadius: 1.5,
+                              fontWeight: 600,
+                            }}
                           />
                         ))}
-                        {p.tech.length > 4 && <Chip label={`+${p.tech.length - 4}`} size="small" sx={{ fontSize: '0.65rem', height: 20 }} />}
+                        {p.tech.length > 4 && <Chip label={`+${p.tech.length - 4}`} size="small" sx={{ fontSize: '0.65rem', height: 20, borderRadius: 1.5, fontWeight: 600 }} />}
                       </Stack>
                     </CardContent>
 
-                    <CardActions sx={{ px: 2.5, pb: 2, pt: 1, borderTop: 1, borderColor: 'divider', gap: 1 }}>
+                    <CardActions sx={{ px: 3, pb: 2.5, pt: 1.5, borderTop: 1, borderColor: 'divider', gap: 1 }}>
                       {p.liveUrl && (
-                        <Button component="a" href={p.liveUrl} target="_blank" size="small" startIcon={<OpenInNewRoundedIcon fontSize="small" />} sx={{ fontSize: '0.75rem', p: 0.5 }}>Live</Button>
+                        <Button component="a" href={p.liveUrl} target="_blank" size="small" startIcon={<OpenInNewRoundedIcon sx={{ fontSize: '0.9rem' }} />} sx={{ fontSize: '0.75rem', p: 0.5 }}>Live</Button>
                       )}
                       {p.githubUrl && (
-                        <Button component="a" href={p.githubUrl} target="_blank" size="small" startIcon={<GitHubIcon fontSize="small" />} sx={{ fontSize: '0.75rem', p: 0.5 }}>Code</Button>
+                        <Button component="a" href={p.githubUrl} target="_blank" size="small" startIcon={<GitHubIcon sx={{ fontSize: '0.9rem' }} />} sx={{ fontSize: '0.75rem', p: 0.5 }}>Code</Button>
                       )}
                       <Box sx={{ flex: 1 }} />
-                      <Button component="a" href={`/projects/${p.slug}/`} size="small" endIcon={<ArrowForwardRoundedIcon fontSize="small" />} color="primary" sx={{ fontSize: '0.75rem', fontWeight: 600, p: 0.5 }}>Details</Button>
+                      <Button component={Link} href={`/projects/${p.slug}/`} size="small" endIcon={<ArrowForwardRoundedIcon sx={{ fontSize: '0.9rem' }} />} color="primary" sx={{ fontSize: '0.75rem', fontWeight: 700, p: 0.5 }}>Details</Button>
                     </CardActions>
                   </Card>
                 </motion.div>

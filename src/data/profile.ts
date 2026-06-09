@@ -22,5 +22,12 @@ export const profile: Profile = {
     { platform: "LinkedIn", url: "https://www.linkedin.com/in/nahidjc", icon: "FaLinkedin" },
     { platform: "Twitter", url: "https://twitter.com/nahidjc", icon: "FaTwitter" },
     { platform: "Email", url: "mailto:nahidjc.cse@gmail.com", icon: "FaEnvelope" }
+  ],
+  roles: [
+    "Software Engineer",
+    "Node.js Backend Developer",
+    "React Native Developer",
+    "AWS & Serverless Engineer",
+    "Fintech Systems Builder"
   ]
 };

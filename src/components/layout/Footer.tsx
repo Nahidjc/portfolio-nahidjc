@@ -1,3 +1,5 @@
+'use client';
+import { usePathname, useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -15,6 +17,8 @@ const navLinks = [
   { label: 'Skills', id: 'skills' },
   { label: 'Projects', id: 'projects' },
   { label: 'Education', id: 'education' },
+  { label: 'Certifications', id: 'certifications' },
+  { label: 'Achievements', id: 'achievements' },
   { label: 'Contact', id: 'contact' },
 ];
 
@@ -26,6 +30,20 @@ const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
 };
 
 export default function Footer() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleNavClick = (id: string) => {
+    if (pathname !== '/') {
+      router.push(`/#${id}`);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <Box
       component="footer"
@@ -59,13 +77,13 @@ export default function Footer() {
               </Box>
               <Typography fontWeight={700}>MD.NAHID</Typography>
             </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 260, lineHeight: 1.7 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 280, lineHeight: 1.7 }}>
               Building scalable systems. Shipping clean code. Open to exciting opportunities.
             </Typography>
           </Grid>
 
           {/* Navigation */}
-          <Grid size={{ xs: 6, sm: 3.5 }}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Typography
               variant="overline"
               color="text.secondary"
@@ -73,12 +91,12 @@ export default function Footer() {
             >
               Navigation
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1 }}>
               {navLinks.map(({ label, id }) => (
                 <Link
                   key={id}
                   component="button"
-                  onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => handleNavClick(id)}
                   underline="none"
                   variant="body2"
                   color="text.secondary"
@@ -95,7 +113,7 @@ export default function Footer() {
           </Grid>
 
           {/* Connect */}
-          <Grid size={{ xs: 6, sm: 3.5 }}>
+          <Grid size={{ xs: 12, sm: 3 }}>
             <Typography
               variant="overline"
               color="text.secondary"

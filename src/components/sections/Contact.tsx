@@ -49,7 +49,7 @@ export default function Contact() {
           {/* Contact info */}
           <Grid size={{ xs: 12, md: 5 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-              <Typography variant="h6" fontWeight={700} gutterBottom>Contact Information</Typography>
+              <Typography variant="h6" fontWeight={800} gutterBottom sx={{ fontSize: '1.1rem', mb: 2 }}>Contact Information</Typography>
               <Stack gap={1.5}>
                 {contactInfo.map(({ Icon, label, value, href }) => (
                   <Card
@@ -60,17 +60,22 @@ export default function Contact() {
                     target={href.startsWith('http') ? '_blank' : undefined}
                     sx={{
                       display: 'flex', alignItems: 'center', gap: 2, p: 2,
-                      cursor: 'pointer', transition: 'all 0.2s',
+                      cursor: 'pointer', transition: 'all 0.25s ease-in-out',
                       color: 'text.primary',
-                      '&:hover': { borderColor: 'primary.main', boxShadow: '0 4px 20px rgba(157,113,240,0.1)', transform: 'translateY(-1px)', color: 'primary.main' },
+                      '&:hover': {
+                        borderColor: 'primary.main',
+                        boxShadow: (theme) => `0 6px 20px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.1)' : 'rgba(37,99,235,0.04)'}`,
+                        transform: 'translateY(-2px)',
+                        color: 'primary.main'
+                      },
                     }}
                   >
-                    <Box sx={{ width: 38, height: 38, borderRadius: 2, bgcolor: 'rgba(157,113,240,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Box sx={{ width: 38, height: 38, borderRadius: 1.5, bgcolor: 'action.hover', border: '1px solid', borderColor: 'divider', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <Icon sx={{ fontSize: 18, color: 'primary.main' }} />
                     </Box>
                     <Box>
-                      <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
-                      <Typography variant="body2" fontWeight={600} sx={{ transition: 'color 0.2s' }}>{value}</Typography>
+                      <Typography variant="caption" color="text.secondary" display="block" sx={{ fontWeight: 600 }}>{label}</Typography>
+                      <Typography variant="body2" fontWeight={700} sx={{ transition: 'color 0.2s', fontSize: '0.85rem' }}>{value}</Typography>
                     </Box>
                   </Card>
                 ))}
@@ -82,10 +87,10 @@ export default function Contact() {
           <Grid size={{ xs: 12, md: 7 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
               <Card>
-                <CardContent sx={{ p: { xs: 2.5, sm: 3.5 } }}>
-                  <Typography variant="h6" fontWeight={700} gutterBottom>Send a message</Typography>
+                <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
+                  <Typography variant="h6" fontWeight={800} gutterBottom sx={{ fontSize: '1.1rem' }}>Send a message</Typography>
                   <Box component="form" onSubmit={handle} sx={{ mt: 2 }}>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2.5}>
                       <Grid size={{ xs: 12, sm: 6 }}>
                         <TextField fullWidth label="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required size="small" />
                       </Grid>
@@ -100,7 +105,17 @@ export default function Contact() {
                       </Grid>
                       <Grid size={12}>
                         {sent && <Alert severity="success" sx={{ mb: 2, borderRadius: 2 }}>Message sent! I'll get back to you soon.</Alert>}
-                        <Button type="submit" variant="contained" size="large" fullWidth endIcon={<SendRoundedIcon />} sx={{ boxShadow: '0 8px 24px rgba(157,113,240,0.25)' }}>
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          size="large"
+                          fullWidth
+                          endIcon={<SendRoundedIcon sx={{ fontSize: '0.9rem' }} />}
+                          sx={{
+                            boxShadow: (theme) => `0 8px 24px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.2)' : 'rgba(37,99,235,0.12)'}`,
+                            py: 1.25,
+                          }}
+                        >
                           Send Message
                         </Button>
                       </Grid>

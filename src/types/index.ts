@@ -11,6 +11,7 @@ export interface Profile {
   availableForWork: boolean;
   stats: { label: string; value: string }[];
   social: { platform: string; url: string; icon: string }[];
+  roles?: string[];
 }
 
 export interface Experience {

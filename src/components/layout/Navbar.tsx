@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
@@ -27,12 +28,18 @@ const navItems = [
   { label: 'Skills', id: 'skills' },
   { label: 'Projects', id: 'projects' },
   { label: 'Education', id: 'education' },
+  { label: 'Certifications', id: 'certifications' },
+  { label: 'Achievements', id: 'achievements' },
   { label: 'Contact', id: 'contact' },
 ];
 
 function useScrollSpy() {
   const [activeId, setActiveId] = useState('');
+  const pathname = usePathname();
+
   useEffect(() => {
+    if (pathname !== '/') return;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((e) => e.isIntersecting);
@@ -50,7 +57,7 @@ function useScrollSpy() {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
   return activeId;
 }
 
@@ -59,10 +66,27 @@ export default function Navbar() {
   const { mode, toggleColorMode } = useColorMode();
   const activeId = useScrollSpy();
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 40 });
+  const pathname = usePathname();
+  const router = useRouter();
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (pathname !== '/') {
+      router.push(`/#${id}`);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
     setDrawerOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    if (pathname !== '/') {
+      router.push('/');
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -72,24 +96,24 @@ export default function Navbar() {
         elevation={0}
         sx={{
           bgcolor: scrolled
-            ? 'rgba(7,7,15,0.85)'
+            ? 'rgba(11,17,32,0.8)'
             : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
           borderBottom: scrolled
-            ? '1px solid rgba(255,255,255,0.07)'
+            ? '1px solid rgba(255,255,255,0.06)'
             : '1px solid transparent',
-          transition: 'all 0.3s ease',
+          transition: 'all 0.3s ease-in-out',
           ...(mode === 'light' && {
-            bgcolor: scrolled ? 'rgba(248,248,254,0.85)' : 'transparent',
-            borderBottomColor: scrolled ? 'rgba(0,0,0,0.07)' : 'transparent',
+            bgcolor: scrolled ? 'rgba(248,250,252,0.8)' : 'transparent',
+            borderBottomColor: scrolled ? 'rgba(0,0,0,0.06)' : 'transparent',
           }),
         }}
       >
         <Toolbar sx={{ maxWidth: 1280, mx: 'auto', width: '100%', px: { xs: 2, sm: 3 } }}>
           {/* Logo */}
           <Box
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            sx={{ display: 'flex', alignItems: 'center', gap: 1.5, cursor: 'pointer', mr: 4 }}
+            onClick={handleLogoClick}
+            sx={{ display: 'flex', alignItems: 'center', gap: 1.5, cursor: 'pointer', mr: 2 }}
           >
             <Box
               sx={{
@@ -101,7 +125,7 @@ export default function Navbar() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontWeight: 800,
-                fontSize: '0.8rem',
+                fontSize: '0.85rem',
                 color: 'primary.contrastText',
                 flexShrink: 0,
               }}
@@ -109,15 +133,16 @@ export default function Navbar() {
               MN
             </Box>
             <Typography
-              fontWeight={700}
-              sx={{ display: { xs: 'none', sm: 'block' }, letterSpacing: '-0.01em' }}
+              variant="h6"
+              fontWeight={800}
+              sx={{ display: { xs: 'none', sm: 'block' }, letterSpacing: '-0.02em', fontSize: '1rem' }}
             >
               MD.NAHID
             </Typography>
           </Box>
 
           {/* Desktop nav */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5, flex: 1 }}>
+          <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 0.25, flex: 1, ml: 2 }}>
             {navItems.map(({ label, id }) => (
               <Button
                 key={id}
@@ -126,9 +151,10 @@ export default function Navbar() {
                 sx={{
                   color: activeId === id ? 'primary.main' : 'text.secondary',
                   bgcolor: activeId === id ? 'action.hover' : 'transparent',
-                  fontWeight: 500,
-                  fontSize: '0.875rem',
-                  px: 1.5,
+                  fontWeight: 600,
+                  fontSize: '0.825rem',
+                  px: 1.25,
+                  py: 0.75,
                   '&:hover': { color: 'text.primary', bgcolor: 'action.hover' },
                 }}
               >
@@ -147,15 +173,15 @@ export default function Navbar() {
               href={profile.resumeUrl}
               variant="contained"
               size="small"
-              startIcon={<DownloadRoundedIcon />}
-              sx={{ display: { xs: 'none', sm: 'flex' }, fontSize: '0.8rem', px: 2 }}
+              startIcon={<DownloadRoundedIcon sx={{ fontSize: '0.9rem' }} />}
+              sx={{ display: { xs: 'none', sm: 'flex' }, fontSize: '0.75rem', px: 2, py: 0.75 }}
             >
               Resume
             </Button>
 
             <IconButton
               onClick={() => setDrawerOpen(true)}
-              sx={{ display: { md: 'none' }, color: 'text.secondary' }}
+              sx={{ display: { lg: 'none' }, color: 'text.secondary' }}
             >
               <MenuRoundedIcon />
             </IconButton>
@@ -194,7 +220,7 @@ export default function Navbar() {
             >
               MN
             </Box>
-            <Typography fontWeight={700}>MD.NAHID</Typography>
+            <Typography fontWeight={800} sx={{ fontSize: '0.95rem' }}>MD.NAHID</Typography>
           </Box>
           <IconButton onClick={() => setDrawerOpen(false)} size="small">
             <CloseRoundedIcon />
@@ -217,7 +243,7 @@ export default function Navbar() {
               >
                 <ListItemText
                   primary={label}
-                  primaryTypographyProps={{ fontWeight: 500, fontSize: '0.9rem' }}
+                  primaryTypographyProps={{ fontWeight: 600, fontSize: '0.875rem' }}
                 />
               </ListItemButton>
             </ListItem>

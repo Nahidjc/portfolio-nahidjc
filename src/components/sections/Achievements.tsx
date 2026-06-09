@@ -50,8 +50,8 @@ export default function Achievements() {
                     <Card
                       sx={{
                         height: '100%',
-                        transition: 'all 0.3s ease',
-                        '&:hover': { borderColor: 'primary.main', transform: 'translateY(-3px)', boxShadow: '0 12px 40px rgba(157,113,240,0.1)' },
+                        transition: 'all 0.3s ease-in-out',
+                        '&:hover': { borderColor: 'primary.main', transform: 'translateY(-3px)', boxShadow: (theme) => `0 12px 40px ${theme.palette.mode === 'dark' ? 'rgba(59,130,246,0.12)' : 'rgba(37,99,235,0.06)'}` },
                       }}
                     >
                       <CardContent sx={{ p: 3 }}>
