@@ -19,7 +19,6 @@ import { profile } from '@/data/profile';
 const displayRoles = profile.roles || [
   'Software Engineer',
   'Node.js Backend Developer',
-  'React Native Developer',
   'AWS & Serverless Engineer',
   'Fintech Systems Builder',
 ];
