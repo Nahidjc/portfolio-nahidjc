@@ -74,14 +74,13 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Ambient glow */}
+      
       <Box sx={{
         position: 'absolute', top: '35%', left: '50%', transform: 'translate(-50%,-50%)',
         width: { xs: 400, md: 600 }, height: { xs: 400, md: 600 }, borderRadius: '50%',
         bgcolor: 'primary.main', opacity: { xs: 0.04, md: 0.06 }, filter: 'blur(100px)', pointerEvents: 'none',
       }} />
 
-      {/* Grid bg */}
       <Box sx={{
         position: 'absolute', inset: 0, opacity: 0.02,
         backgroundImage: 'linear-gradient(currentColor 1px,transparent 1px),linear-gradient(90deg,currentColor 1px,transparent 1px)',
@@ -91,7 +90,7 @@ export default function Hero() {
       <Container maxWidth="lg">
         <motion.div variants={container} initial="hidden" animate="show">
           <Grid container spacing={{ xs: 5, md: 8 }} alignItems="center">
-            {/* Avatar column — top on mobile */}
+            
             <Grid size={{ xs: 12, md: 5 }} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, order: { xs: 1, md: 2 } }}>
               <motion.div variants={item}>
                 <Box sx={{ position: 'relative' }}>
@@ -128,7 +127,6 @@ export default function Hero() {
                 </Box>
               </motion.div>
 
-              {/* Stat cards */}
               <motion.div variants={item} style={{ width: '100%', maxWidth: 300 }}>
                 <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1.5 }}>
                   {profile.stats.map((stat) => (
@@ -161,7 +159,6 @@ export default function Hero() {
               </motion.div>
             </Grid>
 
-            {/* Text column */}
             <Grid size={{ xs: 12, md: 7 }} sx={{ order: { xs: 2, md: 1 }, textAlign: { xs: 'center', md: 'left' } }}>
               <motion.div variants={item}>
                 <Chip
@@ -263,7 +260,6 @@ export default function Hero() {
           </Grid>
         </motion.div>
 
-        {/* Scroll indicator */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8 }}>
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8 }}>
             <Box

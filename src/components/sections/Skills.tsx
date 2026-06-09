@@ -42,7 +42,6 @@ export default function Skills() {
           description="Technologies I use to build production-ready services, mobile apps, and cloud-native systems."
         />
 
-        {/* Filter chips — horizontally scrollable on mobile */}
         <Box sx={{
           display: 'flex',
           gap: 1.25,
@@ -83,7 +82,6 @@ export default function Skills() {
           ))}
         </Box>
 
-        {/* Skill cards */}
         <motion.div key={active} variants={grid} initial="hidden" animate="show">
           <Box sx={{
             display: 'grid',
@@ -134,7 +132,6 @@ export default function Skills() {
           </Box>
         </motion.div>
 
-        {/* Category legend (All view) */}
         {active === ALL && (
           <Box sx={{ mt: 5, display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
             {skillGroups.map((g) => (

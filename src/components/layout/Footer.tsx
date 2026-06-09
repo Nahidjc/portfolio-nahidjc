@@ -56,7 +56,7 @@ export default function Footer() {
     >
       <Container maxWidth="lg">
         <Grid container spacing={{ xs: 4, md: 6 }}>
-          {/* Brand */}
+          
           <Grid size={{ xs: 12, sm: 5 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
               <Box
@@ -82,7 +82,6 @@ export default function Footer() {
             </Typography>
           </Grid>
 
-          {/* Navigation */}
           <Grid size={{ xs: 12, sm: 4 }}>
             <Typography
               variant="overline"
@@ -112,7 +111,6 @@ export default function Footer() {
             </Box>
           </Grid>
 
-          {/* Connect */}
           <Grid size={{ xs: 12, sm: 3 }}>
             <Typography
               variant="overline"

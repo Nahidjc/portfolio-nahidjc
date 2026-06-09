@@ -38,7 +38,6 @@ export default function About() {
       <Container maxWidth="lg">
         <SectionHeader label="About Me" title="Engineering with purpose" description={profile.bio} />
 
-        {/* Feature cards */}
         <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
           <Grid container spacing={2.5} sx={{ mb: 8 }}>
             {features.map((f) => (
@@ -71,7 +70,6 @@ export default function About() {
           </Grid>
         </motion.div>
 
-        {/* Philosophy + Timeline */}
         <Grid container spacing={{ xs: 5, md: 8 }}>
           <Grid size={{ xs: 12, md: 6 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>

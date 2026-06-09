@@ -52,7 +52,6 @@ export default function Projects() {
       <Container maxWidth="lg">
         <SectionHeader label="Portfolio" title="Featured Projects" description="A selection of projects that demonstrate depth across the stack — from real-time analytics to developer tooling." />
 
-        {/* Search + filter */}
         <Stack gap={2} sx={{ mb: 5 }}>
           <TextField
             placeholder="Search projects..."
@@ -106,7 +105,6 @@ export default function Projects() {
           </Box>
         </Stack>
 
-        {/* Cards grid */}
         <motion.div
           key={`${search}-${tech}`}
           variants={stagger}

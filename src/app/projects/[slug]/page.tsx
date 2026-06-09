@@ -47,9 +47,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   return (
     <Box sx={{ minHeight: '100vh', pt: { xs: 10, md: 12 }, pb: 8 }}>
-      {/* Hero Header */}
+      
       <Box sx={{ position: 'relative', bgcolor: 'action.hover', borderBottom: 1, borderColor: 'divider', py: { xs: 6, md: 8 }, overflow: 'hidden', mb: 6 }}>
-        {/* Glow */}
+        
         <Box sx={{
           position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)',
           width: 500, height: 500, borderRadius: '50%',
@@ -118,9 +118,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </Container>
       </Box>
 
-      {/* Main Content */}
       <Container maxWidth="lg">
-        {/* Breadcrumbs */}
+        
         <Stack direction="row" alignItems="center" gap={1.25} sx={{ mb: 5, color: 'text.secondary', fontSize: '0.875rem', fontWeight: 600 }}>
           <Link href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} className="hover-primary">
             Home
@@ -134,10 +133,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </Stack>
 
         <Grid container spacing={5}>
-          {/* Detailed Content */}
+          
           <Grid size={{ xs: 12, lg: 8 }}>
             <Stack gap={5}>
-              {/* Overview */}
+              
               <Box>
                 <Typography variant="h3" sx={{ fontWeight: 800, fontSize: '1.5rem', mb: 2, display: 'flex', alignItems: 'center', gap: 1.25 }}>
                   <InfoRoundedIcon color="primary" sx={{ fontSize: 22 }} /> Overview
@@ -147,7 +146,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </Typography>
               </Box>
 
-              {/* Problem & Solution */}
               <Grid container spacing={3}>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <Card sx={{ height: '100%', borderColor: 'divider', bgcolor: 'action.hover' }}>
@@ -175,7 +173,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </Grid>
               </Grid>
 
-              {/* Key Features */}
               <Box>
                 <Typography variant="h3" sx={{ fontWeight: 800, fontSize: '1.5rem', mb: 2.5, display: 'flex', alignItems: 'center', gap: 1.25 }}>
                   <CheckCircleRoundedIcon color="success" sx={{ fontSize: 22 }} /> Key Features
@@ -190,7 +187,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </Stack>
               </Box>
 
-              {/* Architecture */}
               {project.architecture && (
                 <Box>
                   <Typography variant="h3" sx={{ fontWeight: 800, fontSize: '1.5rem', mb: 2, display: 'flex', alignItems: 'center', gap: 1.25 }}>
@@ -212,7 +208,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </Box>
               )}
 
-              {/* Technical Challenges */}
               {project.challenges && project.challenges.length > 0 && (
                 <Box>
                   <Typography variant="h3" sx={{ fontWeight: 800, fontSize: '1.5rem', mb: 2.5, display: 'flex', alignItems: 'center', gap: 1.25 }}>
@@ -236,7 +231,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </Box>
               )}
 
-              {/* Lessons Learned */}
               {project.lessons && project.lessons.length > 0 && (
                 <Box>
                   <Typography variant="h3" sx={{ fontWeight: 800, fontSize: '1.5rem', mb: 2.5, display: 'flex', alignItems: 'center', gap: 1.25 }}>
@@ -253,7 +247,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </Box>
               )}
 
-              {/* Screenshots */}
               {project.screenshots && project.screenshots.length > 0 && (
                 <Box>
                   <Typography variant="h3" sx={{ fontWeight: 800, fontSize: '1.5rem', mb: 2.5 }}>Screenshots</Typography>
@@ -280,10 +273,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </Stack>
           </Grid>
 
-          {/* Sidebar Info */}
           <Grid size={{ xs: 12, lg: 4 }}>
             <Stack gap={3.5} sx={{ position: 'sticky', top: 90 }}>
-              {/* Tech Stack */}
+              
               <Card sx={{ p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
                   <Typography variant="subtitle2" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 800, mb: 2.5, fontSize: '0.725rem' }}>
@@ -311,7 +303,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </CardContent>
               </Card>
 
-              {/* Metadata */}
               <Card sx={{ p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
                   <Typography variant="subtitle2" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 800, mb: 2.5, fontSize: '0.725rem' }}>
@@ -334,7 +325,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </CardContent>
               </Card>
 
-              {/* Back to Home */}
               <Button
                 component={Link}
                 href="/#projects"

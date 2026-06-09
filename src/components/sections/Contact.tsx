@@ -46,7 +46,7 @@ export default function Contact() {
         <SectionHeader label="Let's Talk" title="Ready to build something great?" description="Whether you have a project in mind, a question, or just want to say hello — my inbox is always open." centered />
 
         <Grid container spacing={4}>
-          {/* Contact info */}
+          
           <Grid size={{ xs: 12, md: 5 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
               <Typography variant="h6" fontWeight={800} gutterBottom sx={{ fontSize: '1.1rem', mb: 2 }}>Contact Information</Typography>
@@ -83,7 +83,6 @@ export default function Contact() {
             </motion.div>
           </Grid>
 
-          {/* Form */}
           <Grid size={{ xs: 12, md: 7 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
               <Card>

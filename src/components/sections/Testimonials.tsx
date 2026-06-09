@@ -28,7 +28,6 @@ export default function Testimonials() {
       <Container maxWidth="lg">
         <SectionHeader label="Recommendations" title="What colleagues say" description="Genuine LinkedIn recommendations from team members and mentors." centered />
 
-        {/* Desktop: side-by-side */}
         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <Grid container spacing={3}>
             {testimonials.map((test, i) => (
@@ -41,7 +40,6 @@ export default function Testimonials() {
           </Grid>
         </Box>
 
-        {/* Mobile: carousel */}
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
           <AnimatePresence mode="wait">
             <motion.div

@@ -110,7 +110,7 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ maxWidth: 1280, mx: 'auto', width: '100%', px: { xs: 2, sm: 3 } }}>
-          {/* Logo */}
+          
           <Box
             onClick={handleLogoClick}
             sx={{ display: 'flex', alignItems: 'center', gap: 1.5, cursor: 'pointer', mr: 2 }}
@@ -141,7 +141,6 @@ export default function Navbar() {
             </Typography>
           </Box>
 
-          {/* Desktop nav */}
           <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 0.25, flex: 1, ml: 2 }}>
             {navItems.map(({ label, id }) => (
               <Button
@@ -163,7 +162,6 @@ export default function Navbar() {
             ))}
           </Box>
 
-          {/* Actions */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ml: 'auto' }}>
             <IconButton onClick={toggleColorMode} size="small" sx={{ color: 'text.secondary' }}>
               {mode === 'dark' ? <LightModeRoundedIcon fontSize="small" /> : <DarkModeRoundedIcon fontSize="small" />}
@@ -189,7 +187,6 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
 
-      {/* Mobile Drawer */}
       <Drawer
         anchor="right"
         open={drawerOpen}

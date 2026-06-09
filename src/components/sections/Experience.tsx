@@ -49,7 +49,7 @@ export default function Experience() {
             {experiences.map((exp) => (
               <motion.div key={exp.id} variants={slideIn}>
                 <Box sx={{ position: 'relative', mb: 3 }}>
-                  {/* Timeline dot */}
+                  
                   <Box sx={{
                     position: 'absolute', left: { xs: -32, sm: -34 }, top: 20,
                     width: 14, height: 14, borderRadius: '50%',
@@ -95,7 +95,7 @@ export default function Experience() {
                     </AccordionSummary>
 
                     <AccordionDetails sx={{ px: 3.5, pb: 3.5, pt: 1 }}>
-                      {/* Impact */}
+                      
                       <Box sx={{
                         bgcolor: 'action.hover',
                         border: '1px solid',

@@ -31,7 +31,7 @@ export default function Education() {
             {education.map((edu) => (
               <motion.div key={edu.id} variants={slideIn}>
                 <Box sx={{ position: 'relative', mb: 3 }}>
-                  {/* Dot */}
+                  
                   <Box sx={{
                     position: 'absolute', left: { xs: -22, sm: -24 }, top: 24,
                     width: 16, height: 16, borderRadius: '50%',
